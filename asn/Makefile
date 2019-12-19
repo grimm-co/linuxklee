@@ -2,6 +2,7 @@
 all: x509 pkcs7 rsa x509_debug pkcs7_debug rsa_debug x509_klee_debug pkcs7_klee_debug rsa_klee_debug 
 
 X509_SRC=misc.c oid_registry.c asn1_decoder.c x509-asn1.c x509_rsakey-asn1.c x509_cert_parser.c x509_main.c 
+X509_FIXED_SRC=misc.c oid_registry.c asn1_decoder_fixed.c x509-asn1.c x509_rsakey-asn1.c x509_cert_parser.c x509_main.c 
 PKCS7_SRC=misc.c oid_registry.c asn1_decoder.c pkcs7-asn1.c pkcs7_parser.c x509_cert_parser.c x509-asn1.c x509_rsakey-asn1.c pkcs7_main.c
 RSA_SRC=misc.c oid_registry.c asn1_decoder.c rsapubkey-asn1.c rsaprivkey-asn1.c rsa_helper.c rsa_main.c
 
@@ -10,6 +11,9 @@ x509:
 
 x509_debug:
 	$(CC) -g -O0 -DDEBUG $(CFLAGS) $(X509_SRC) -o x509_debug
+
+x509_debug_fixed:
+	$(CC) -g -O0 -DDEBUG $(CFLAGS) $(X509_FIXED_SRC) -o x509_debug_fixed
 
 x509_klee_debug:
 	$(CC) -g -O0 -DDEBUG -DKLEE_DEBUG $(CFLAGS) $(X509_SRC) -o x509_klee_debug
